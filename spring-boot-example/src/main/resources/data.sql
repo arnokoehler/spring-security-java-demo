@@ -1,0 +1,3 @@
+INSERT INTO jokes (joke, category, lang) VALUES ('Why don''t scientists trust atoms? Because they make up everything!', 'atoms', 'en');
+INSERT INTO jokes (joke, category, lang) VALUES ('I''m reading a book about anti-gravity. It''s impossible to put down!', 'gravity', 'en');
+INSERT INTO jokes (joke, category, lang) VALUES ('I told my wife she was drawing her eyebrows too high. She looked surprised.', 'eyebrows', 'en');
