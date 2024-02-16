@@ -1,8 +1,6 @@
 package nl.arnokoehler.io.digital.springsecuritydemo;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +21,9 @@ public class ChuckNorrisController {
 
   @GetMapping("/jokes")
   public List<JokeResponse> getAllJokes() {
-    return chuckNorrisService.getAllJokesS().stream().map(jokeMapper::map).collect(Collectors.toList());
+    return chuckNorrisService.getAllJokesS().stream()
+        .map(jokeMapper::map)
+        .collect(Collectors.toList());
   }
 
   @GetMapping("/random/joke")
@@ -40,7 +40,7 @@ public class ChuckNorrisController {
 
   @PutMapping("/jokes/{id}")
   public void updateJoke(@PathVariable("id") Long id, @RequestBody JokeRequest jokeRequest) {
-    chuckNorrisService.updateJoke(id, jokeMapper.map(jokeRequest));
+    chuckNorrisService.updateValues(id, jokeMapper.map(jokeRequest));
   }
 
 }

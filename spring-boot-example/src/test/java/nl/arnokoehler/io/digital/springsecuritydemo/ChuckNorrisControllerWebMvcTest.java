@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ChuckNorrisController.class)
@@ -33,7 +32,7 @@ class ChuckNorrisControllerWebMvcTest {
       return new JokeResponse(joke.getId(), joke.getJoke());
     });
 
-    mvc.perform(get("/random/joke"))
+    mvc.perform(get("/jokes"))
         .andExpect(status().isUnauthorized());
   }
 }

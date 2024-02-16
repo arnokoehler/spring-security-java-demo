@@ -11,24 +11,30 @@ public class ChuckNorrisService {
 
   private final ChuckNorrisRepository chuckNorrisRepository;
 
-   public List<Joke> getAllJokesS() {
+  public List<Joke> getAllJokesS() {
     return chuckNorrisRepository.findAll();
   }
 
   public Joke getJoke(Long id) {
-    return chuckNorrisRepository.findJokeById(id);
+    return chuckNorrisRepository.findJokeById(id).orElseThrow(() -> new JokeNotFoundException(id));
   }
 
   public Joke getRandomJoke() {
-    return chuckNorrisRepository.getRandomJoke();
+    return chuckNorrisRepository.getRandomJoke().orElseThrow(JokeNotFoundException::new);
   }
 
-  public Joke updateJoke(Long id, Joke joke) {
-    Joke jokeById = chuckNorrisRepository.findJokeById(id);
-    if (jokeById != null) {
-      joke.setId(id);
-      return chuckNorrisRepository.save(joke);
-    }
-    return null;
+  public Joke updateValues(Long id, Joke newJoke) {
+    Joke jokeById = chuckNorrisRepository.findJokeById(id).orElseThrow(JokeNotFoundException::new);
+    return chuckNorrisRepository.save(updateValues(newJoke, jokeById));
+  }
+
+  private static Joke updateValues(Joke updatedJoke, Joke original) {
+    return Joke.builder()
+        .id(original.getId())
+        .joke(updatedJoke.getJoke() != null ? updatedJoke.getJoke() : original.getJoke())
+        .category(updatedJoke.getCategory() != null ? updatedJoke.getCategory() : original.getCategory())
+        .reference(updatedJoke.getReference() != null ? updatedJoke.getReference() : original.getReference())
+        .lang(updatedJoke.getLang() != null ? updatedJoke.getLang() : original.getLang())
+        .build();
   }
 }

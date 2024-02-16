@@ -17,7 +17,7 @@ class ChuckNorrisRepositoryDataTest {
     joke.setJoke("Chuck Norris can divide by zero.");
     joke.setCategory("nerdy");
     chuckNorrisRepository.save(joke);
-    Joke foundJoke = chuckNorrisRepository.findJokeByJoke("Chuck Norris can divide by zero.");
+    Joke foundJoke = chuckNorrisRepository.findJokeByJoke("Chuck Norris can divide by zero.").get();
     assertEquals(joke, foundJoke);
   }
 
@@ -27,7 +27,7 @@ class ChuckNorrisRepositoryDataTest {
     joke.setJoke("Chuck Norris can divide by zero.");
     joke.setCategory("nerdy");
     Joke save = chuckNorrisRepository.save(joke);
-    Joke foundJoke = chuckNorrisRepository.findJokeById(save.getId());
+    Joke foundJoke = chuckNorrisRepository.findJokeById(save.getId()).get();
     assertEquals(save, foundJoke);
   }
 
