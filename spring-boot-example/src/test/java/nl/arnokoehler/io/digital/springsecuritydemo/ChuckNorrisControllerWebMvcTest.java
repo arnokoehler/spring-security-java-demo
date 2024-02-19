@@ -30,7 +30,12 @@ class ChuckNorrisControllerWebMvcTest {
   @Test
   @WithAnonymousUser
   public void test() throws Exception {
-    Joke chuckNorris = Joke.builder().id(1L).joke("Chuck Norris can divide by zero.").category("Chuck Norris").build();
+    Joke chuckNorris = Joke.builder()
+        .id(1L)
+        .joke("Chuck Norris can divide by zero.")
+        .category("Chuck Norris")
+        .build();
+
     when(service.getRandomJoke()).thenReturn(chuckNorris);
     when(jokeMapper.map(any(Joke.class))).thenAnswer(invocation -> {
       Joke joke = invocation.getArgument(0);
