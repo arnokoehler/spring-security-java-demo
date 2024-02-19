@@ -39,7 +39,7 @@ class ChuckNorrisControllerWebMvcTest {
     when(service.getRandomJoke()).thenReturn(chuckNorris);
     when(jokeMapper.map(any(Joke.class))).thenAnswer(invocation -> {
       Joke joke = invocation.getArgument(0);
-      return new JokeResponse(joke.getId(), joke.getJoke());
+      return new JokeResponse(joke.getId(), joke.getJoke(), joke.getCategory(), joke.getReference(), joke.getLang());
     });
 
     mvc.perform(get("/jokes"))
