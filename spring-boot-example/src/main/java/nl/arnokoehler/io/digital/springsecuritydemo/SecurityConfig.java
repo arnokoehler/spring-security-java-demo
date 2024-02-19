@@ -21,6 +21,9 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests((authz) -> authz
+            .requestMatchers("/jokes/{id}").hasRole("USER")
+            .requestMatchers("/jokes").hasRole("USER")
+            .requestMatchers("/random/joke").permitAll()
             .anyRequest().permitAll()
         );
     return http.build();
