@@ -10,4 +10,10 @@ public class JokeResponse {
   private Long id;
 
   private String joke;
+
+  private String category;
+
+  private String reference;
+
+  private String lang;
 }

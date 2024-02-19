@@ -9,6 +9,9 @@ public class JokeMapper {
     return JokeResponse.builder()
       .id(joke.getId())
       .joke(joke.getJoke())
+      .category(joke.getCategory())
+      .reference(joke.getReference())
+      .lang(joke.getLang())
       .build();
   }
 
